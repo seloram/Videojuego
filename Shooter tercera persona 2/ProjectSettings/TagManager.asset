@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - explosion
+  - Fire
+  - rangoVision
+  - warrior
+  - target
+  - Waypoints1
+  - Waypoints2
+  - Waypoints3
+  - Waypoints4
+  - Waypoints5
+  - light1
+  - Coin1
+  - Waypoints6
+  - Waypoints7
+  - Waypoints8
+  - Waypoints9
+  - Waypoints10
+  - warrior 2
+  - soundExplosion
+  - pickupSound
+  - soundJump
+  - crashObjects
+  - pilar
+  - soundLaser
+  - soundLaserWall
+  - health
+  - terrain
+  - colliderWarrior2
+  - colliderWarrior
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - PostProcessing
+  - MiniMap
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
