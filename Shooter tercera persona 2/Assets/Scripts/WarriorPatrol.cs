@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class WarriorPatrol : MonoBehaviour
 {
     public enum EnemyState
@@ -13,7 +14,7 @@ public class WarriorPatrol : MonoBehaviour
     }
     public EnemyState currentState;
     //enemy's variables
-
+    private NavMeshAgent agent;
     public Transform target;
     public float moveSpeed = 3.0f;
     public float rotateSpeed = 3.0f;
@@ -30,8 +31,10 @@ public class WarriorPatrol : MonoBehaviour
 
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
         targetWPIndex = 1;
         target= GameObject.FindGameObjectWithTag("Waypoints" + targetWPIndex).transform;
+        agent.SetDestination(target.position);
         GoToNextState();
     }
 
@@ -59,12 +62,13 @@ public class WarriorPatrol : MonoBehaviour
         while (this.currentState == EnemyState.Idle && isAlive())
         {
             warriorAnimator.Play("PA_WarriorForward_Clip");
-            this.transform.position = Vector3.MoveTowards(this.transform.position,
-                new Vector3(this.target.transform.position.x, 2, this.target.transform.position.z)
-                , this.moveSpeed * Time.deltaTime);
+            //this.transform.position = Vector3.MoveTowards(this.transform.position,
+            //    new Vector3(this.target.transform.position.x, 2, this.target.transform.position.z)
+            //    , this.moveSpeed * Time.deltaTime);
 
 
-            RotateTowardsTarget();
+            //RotateTowardsTarget();
+            agent.SetDestination(target.position);
             if (GetDistance(insect.transform) < followRange)
             {
                 this.currentState = EnemyState.Follow;
@@ -102,11 +106,11 @@ public class WarriorPatrol : MonoBehaviour
             warriorAnimator.Play("PA_WarriorForward_Clip");
 
             //GetComponent<NavMeshAgent>().SetDestination(target.transform.position);
-            this.transform.position = Vector3.MoveTowards(this.transform.position,
-                new Vector3(this.target.transform.position.x, 2, this.target.transform.position.z)
-                , this.moveSpeed * Time.deltaTime);
-            RotateTowardsTarget();
-            
+            //this.transform.position = Vector3.MoveTowards(this.transform.position,
+            //    new Vector3(this.target.transform.position.x, 2, this.target.transform.position.z)
+            //    , this.moveSpeed * Time.deltaTime);
+            //RotateTowardsTarget();
+            agent.SetDestination(target.position);
             if (GetDistance(target.transform) > idleRange && target.tag.CompareTo("Player")==0)
             {
                 this.currentState = EnemyState.Idle;
