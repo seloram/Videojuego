@@ -16,21 +16,23 @@ public class Warrior2Patrol : MonoBehaviour
     //enemy's variables
     private NavMeshAgent agent;
     public Transform target;
+    public Transform m_muzzle;
     public float moveSpeed = 3.0f;
     public float rotateSpeed = 3.0f;
     public Transform[] Waypoints;
-
+    public GameObject m_shotPrefab;
     public float followRange = 10.0f;//Distancia de detección del enemigo
     public float idleRange = 10.0f;//Distáncia de vuelta al estado idle
     public bool dead = false;
-
+    public float fireRate = 0.5f;
     public Transform WaypointsParent;
     public Transform targetWP;
-
+    private float lastShoot;
     public int targetWPIndex;
     // Start is called before the first frame update
     void Start()
     {
+        lastShoot = Time.time;
         agent = GetComponent<NavMeshAgent>();
         targetWPIndex = 1;
         target = GameObject.FindGameObjectWithTag("Waypoints" + targetWPIndex).transform;
@@ -41,7 +43,22 @@ public class Warrior2Patrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //if (GameObject.FindGameObjectWithTag("Player") != null)
+        //{
+        //    if (GetDistance(target.transform) <= 20.0f)
+        //    {
+                
+        //        RotateTowardsTarget();
+        //        if (lastShoot < Time.time)
+        //        {
+        //            GameObject clip = GameObject.FindGameObjectWithTag("soundLaser");
+        //            clip.GetComponent<AudioSource>().Play();
+        //            lastShoot = Time.time + fireRate;
+        //            GameObject go = GameObject.Instantiate(m_shotPrefab, m_muzzle.position, m_muzzle.rotation) as GameObject;
+        //            GameObject.Destroy(go, 3f);
+        //        }
+        //    }
+        //}
     }
     IEnumerator IdleState()
     {

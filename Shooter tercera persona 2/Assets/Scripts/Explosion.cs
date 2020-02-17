@@ -29,10 +29,10 @@ public class Explosion : MonoBehaviour
             if ((this.gameObject.CompareTag("warrior") || this.gameObject.CompareTag("warrior 2") )&&
                     (!other.CompareTag("colliderWarrior2") && !other.CompareTag("colliderWarrior")))
             {
-            if (other.CompareTag("Player"))
-            {                
-                d.Explosion(other.transform.gameObject, explosion);
-            }
+            //if (other.CompareTag("Player"))
+            //{                
+            //    d.Explosion(other.transform.gameObject, explosion);
+            //}
                 GameObject clip = GameObject.FindGameObjectWithTag("soundExplosion");
                 clip.GetComponent<AudioSource>().Play();
                 Instantiate(explosion, other.transform.position, other.transform.rotation);

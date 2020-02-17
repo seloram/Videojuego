@@ -24,7 +24,8 @@ public class killPlayer : MonoBehaviour
         
     }
     private void OnTriggerEnter(Collider other)
-    {        
+    {
+        Debug.Log("esta disparando " + this.tag);
         if (other.CompareTag("colliderWarrior2")||other.CompareTag("colliderWarrior"))
         {
             d.Explosion(other.transform.parent.gameObject, fragPlayer);
