@@ -19,7 +19,8 @@ public class WarriorPatrol : MonoBehaviour
     public float moveSpeed = 3.0f;
     public float rotateSpeed = 3.0f;
     public Transform[] Waypoints;
-
+    public Material originalMaterial;
+    public Material material;
     public float followRange = 10.0f;//Distancia de detección del enemigo
     public float idleRange = 10.0f;//Distáncia de vuelta al estado idle
     public bool dead = false;
@@ -115,7 +116,25 @@ public class WarriorPatrol : MonoBehaviour
             {
                 this.currentState = EnemyState.Idle;
             }
+            if (GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>().attachedRigidbody.constraints==RigidbodyConstraints.FreezePosition)
+            {
+                this.GetComponent<Warrior2_shot>().fireRate = 6.06f;
+                target.GetComponent<Renderer>().material = material;
+                agent.SetDestination(this.transform.position);
+                StartCoroutine(waitforseconds());
+                
+            }
+            //else
+            //{
+            //    this.GetComponent<Warrior2_shot>().fireRate = 0.5f;
+            //    agent.SetDestination(target.position);
+            //}
 
+            //if (GetDistance(target.transform) < 1.0f)
+            //{
+            //    GameObject.FindGameObjectWithTag("warrior").GetComponent<Rigidbody>().velocity.Set(3f, 3f, 3f);
+            //}else
+            //    //GameObject.FindGameObjectWithTag("warrior").GetComponent<Rigidbody>().velocity=1constraints = RigidbodyConstraints.None;
             if (dead)
             {
                 this.currentState = EnemyState.Die;
@@ -125,6 +144,16 @@ public class WarriorPatrol : MonoBehaviour
         Debug.Log("salir follow state");
         GoToNextState();
     }
+
+    IEnumerator waitforseconds()
+    {   
+        yield return new WaitForSeconds(3);
+        this.GetComponent<Warrior2_shot>().fireRate = 0.5f;
+        agent.SetDestination(target.position);
+        target.GetComponent<Renderer>().material = originalMaterial;
+        target.GetComponent<Collider>().attachedRigidbody.constraints = RigidbodyConstraints.None;
+    }
+
     public Transform nextTarger(int i)
     {
         target = Waypoints[targetWPIndex-1];

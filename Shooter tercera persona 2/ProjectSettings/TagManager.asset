@@ -33,6 +33,9 @@ TagManager:
   - terrain
   - colliderWarrior2
   - colliderWarrior
+  - wShot
+  - cShot
+  - w2Shot
   layers:
   - Default
   - TransparentFX

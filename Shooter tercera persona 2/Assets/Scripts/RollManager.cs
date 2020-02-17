@@ -8,7 +8,8 @@ public class RollManager : MonoBehaviour
     // Start is called before the first frame update
     private Slider healthBar;
     public static int currentHealth;
-
+    
+    
     private void Awake()
     {
         healthBar = GetComponent<Slider>();
@@ -22,9 +23,26 @@ public class RollManager : MonoBehaviour
     {
         this.currentHealth = health;
     }*/
-    public void ReduceHealth()
+    public void ReduceHealth(string tag)
     {
-        currentHealth -= 20;
+        Debug.Log("esta disparando el tag" + tag);
+        if (tag == "wShot")
+        {
+            //GetComponent("Player").transform
+            //yield return new WaitForSeconds(2f);
+            
+            
+             
+        }
+        if (tag == "w2Shot")
+        {
+            currentHealth -= 5;
+        }
+        if (tag == "cShot")
+        {
+            currentHealth -= 20;
+        }
+        
         healthBar.value = currentHealth;
     }    
     // Update is called once per frame

@@ -32,7 +32,7 @@ public class killPlayer : MonoBehaviour
         }
         if (other.CompareTag("Player"))
         {
-            rollManager.ReduceHealth();
+            rollManager.ReduceHealth(this.tag);
             Destroy(this.gameObject);
             if (rollManager.getCurrentHealth() <= 0)
             {

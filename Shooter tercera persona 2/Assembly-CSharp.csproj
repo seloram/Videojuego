@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\DestroyPlayer.cs" />
     <Compile Include="Assets\Scripts\Explosion.cs" />
     <Compile Include="Assets\Scripts\pickupCoin.cs" />
+    <Compile Include="Assets\Scripts\pushPlayer.cs" />
     <Compile Include="Assets\Scripts\RollManager.cs" />
     <Compile Include="Assets\Scripts\VictoryManager.cs" />
     <Compile Include="Assets\Scripts\Warrior2_shot.cs" />

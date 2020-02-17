@@ -17,17 +17,19 @@ public class VictoryManager : MonoBehaviour
     }
     void Start()
     {
-        gametimer = GameObject.Find("GameTimeLeft").GetComponent<GameTimer>();
-        
+        gametimer = GameObject.Find("GameTimeLeft").GetComponent<GameTimer>();        
     }
+
     // Update is called once per frame
     public IEnumerator TheEnd()
     {
+        Debug.Log("the end");
         yield return new WaitForSeconds(2f);
         GameObject gamemanager = GameObject.Find("GameTimeLeft");
         Destroy(gamemanager);
-        Time.timeScale = (isActiveAndEnabled) ? 0 : 1f;
+        Time.timeScale = (isActiveAndEnabled) ? 0 : 1f;     
     }
+
     void Update()
     {
         if (GameObject.FindGameObjectWithTag("Player")!=null){

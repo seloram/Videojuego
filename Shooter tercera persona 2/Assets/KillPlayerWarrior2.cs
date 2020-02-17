@@ -8,6 +8,8 @@ public class KillPlayerWarrior2 : MonoBehaviour
     public RollManager rollManager;
     public GameObject player;
     public DestroyPlayer d;
+    public Material material;
+    public Material originalMaterial;
 
     // Start is called before the first frame update
 
@@ -23,16 +25,24 @@ public class KillPlayerWarrior2 : MonoBehaviour
     {
         
     }
+
     private void OnTriggerEnter(Collider other)
-    {        
-        
+    {                
         if (other.CompareTag("Player"))
         {
-            rollManager.ReduceHealth();
+            rollManager.ReduceHealth(this.tag);
             Destroy(this.gameObject);
             if (rollManager.getCurrentHealth() <= 0)
             {
                 d.Explosion(player, fragPlayer);
+            }
+            if (this.tag == "wShot")
+            {
+                //GameObject.Find("Player")..GetComponent<Ball>();
+                other.attachedRigidbody.constraints = RigidbodyConstraints.FreezePosition;
+                //player.GetComponent<Renderer>().material = material;
+                //StartCoroutine(freezePlayer());
+                ////freezePlayer(other);
             }
         }
         if (other.CompareTag("pilar"))
@@ -41,5 +51,5 @@ public class KillPlayerWarrior2 : MonoBehaviour
             GameObject clip = GameObject.FindGameObjectWithTag("soundLaserWall");
             clip.GetComponent<AudioSource>().Play();
         }
-    }
+    }  
 }

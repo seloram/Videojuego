@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1967465423072572984}
   m_Layer: 0
   m_Name: shot_prefab
-  m_TagString: Fire
+  m_TagString: cShot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1

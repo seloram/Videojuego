@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 941010953526530454}
   m_Layer: 0
   m_Name: shot_warrior2
-  m_TagString: Fire
+  m_TagString: w2Shot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -205,3 +205,5 @@ MonoBehaviour:
   rollManager: {fileID: 0}
   player: {fileID: 0}
   d: {fileID: 0}
+  material: {fileID: 2100000, guid: c9abdaf4e498a2e459b1656f4289b468, type: 2}
+  originalMaterial: {fileID: 0}

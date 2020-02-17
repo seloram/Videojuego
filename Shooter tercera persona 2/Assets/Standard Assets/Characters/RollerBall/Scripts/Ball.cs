@@ -49,6 +49,7 @@ namespace UnityStandardAssets.Vehicles.Ball
             }
         }
 
+
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
             if (hit.gameObject.CompareTag("Player") == true)
