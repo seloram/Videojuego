@@ -116,7 +116,7 @@ public class WarriorPatrol : MonoBehaviour
             {
                 this.currentState = EnemyState.Idle;
             }
-            if (GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>().attachedRigidbody.constraints==RigidbodyConstraints.FreezePosition)
+            if (GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>().attachedRigidbody.constraints==RigidbodyConstraints.FreezePosition&&this.currentState==EnemyState.Follow)
             {
                 this.GetComponent<Warrior2_shot>().fireRate = 6.06f;
                 target.GetComponent<Renderer>().material = material;
@@ -206,10 +206,10 @@ public class WarriorPatrol : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("colliderWarrior"))
-        {
-            dead = true;
-        }
+        //if (!other.CompareTag("colliderWarrior"))
+        //{
+        //    dead = true;
+        //}
     }
         void GetWayPoinsts()
         {

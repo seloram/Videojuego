@@ -25,20 +25,21 @@ public class Explosion : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-            Debug.Log(other.tag);
-            if ((this.gameObject.CompareTag("warrior") || this.gameObject.CompareTag("warrior 2") )&&
+        Debug.Log(other.tag);
+        if ((this.gameObject.CompareTag("warrior") || this.gameObject.CompareTag("warrior 2") )&&
                     (!other.CompareTag("colliderWarrior2") && !other.CompareTag("colliderWarrior")))
-            {
-            if (other.CompareTag("Player"))
-            {
-                d.Explosion(other.transform.gameObject, explosion);
-            }
-            GameObject clip = GameObject.FindGameObjectWithTag("soundExplosion");
-            clip.GetComponent<AudioSource>().Play();
-            Instantiate(explosion, other.transform.position, other.transform.rotation);
-            Animator animator = GetComponent<Animator>();
-            animator.Play("PA_WarriorDeath_Clip");
-            StartCoroutine(gameover());
+        {
+            //if (other.CompareTag("Player"))
+            //{
+      
+            //    //d.Explosion(other.transform.gameObject, explosion);
+            //}
+            //GameObject clip = GameObject.FindGameObjectWithTag("soundExplosion");
+            //clip.GetComponent<AudioSource>().Play();
+            //Instantiate(explosion, other.transform.position, other.transform.rotation);
+            //Animator animator = GetComponent<Animator>();
+            //animator.Play("PA_WarriorDeath_Clip");
+            //StartCoroutine(gameover());
         }
 
         if (other.CompareTag("Fire"))

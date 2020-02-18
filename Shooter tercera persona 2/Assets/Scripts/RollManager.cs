@@ -8,7 +8,7 @@ public class RollManager : MonoBehaviour
     // Start is called before the first frame update
     private Slider healthBar;
     public static int currentHealth;
-    
+
     
     private void Awake()
     {

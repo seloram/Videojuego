@@ -64,6 +64,6 @@ namespace UnityStandardAssets.Vehicles.Ball
             // Call the Move function of the ball controller
             ball.Move(move, jump);
             jump = false;
-        }
+        }       
     }
 }

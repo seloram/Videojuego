@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd28dea64d8e1f4bb9acc9fb9c1f90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushPower: 3444
+  pushPower: 2
 --- !u!1 &258495422 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 88b5bfec6f1bd17439b2f4339902dca6,
@@ -3197,7 +3197,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917238739}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 730b644234efa414f994211d3e3ba75f, type: 3}
   m_Name: 

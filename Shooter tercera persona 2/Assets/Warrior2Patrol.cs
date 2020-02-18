@@ -43,11 +43,15 @@ public class Warrior2Patrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //Debug.Log("estado" + this.currentState);
+        
+            
         //if (GameObject.FindGameObjectWithTag("Player") != null)
         //{
         //    if (GetDistance(target.transform) <= 20.0f)
         //    {
-                
+
         //        RotateTowardsTarget();
         //        if (lastShoot < Time.time)
         //        {
@@ -129,13 +133,22 @@ public class Warrior2Patrol : MonoBehaviour
             //    new Vector3(this.target.transform.position.x,2, this.target.transform.position.z)
             //    , this.moveSpeed * Time.deltaTime);
 
-            //RotateTowardsTarget();
+            //RotateTowardsTarget();            
+            
             agent.SetDestination(target.position);
             if (GetDistance(target.transform) > idleRange && target.tag.CompareTo("Player") == 0)
             {
                 Debug.Log("sale de idle");
                 this.currentState = EnemyState.Idle;
             }
+            if (GetDistance(target.transform) < 2.0f)
+            {
+                agent.SetDestination(this.transform.position);
+            }
+            else
+                agent.SetDestination(target.position);
+
+
 
             if (dead)
             {
@@ -143,7 +156,7 @@ public class Warrior2Patrol : MonoBehaviour
             }
             yield return 0;
         }
-
+        
         GoToNextState();
     }
     public Transform nextTarger(int i)
@@ -197,13 +210,13 @@ public class Warrior2Patrol : MonoBehaviour
             directionToFace, angleToRotate);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("colliderWarrior2"))
-        {
-            dead = true;
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!other.CompareTag("colliderWarrior2"))
+    //    {
+    //        dead = true;
+    //    }
+    //}
     void GetWayPoinsts()
     {
         int num0fWPs = WaypointsParent.childCount;
