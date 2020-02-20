@@ -20,4 +20,12 @@ public class PressButton : MonoBehaviour
     {
         SceneManager.LoadScene("Stage_1");
     }
+    public void QuitGame()
+    {
+        if (UnityEditor.EditorApplication.isPlaying)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+        }else
+            Application.Quit();
+    }
 }
