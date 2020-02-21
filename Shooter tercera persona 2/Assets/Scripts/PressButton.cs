@@ -6,12 +6,15 @@ public class PressButton : MonoBehaviour
 {
     public GameObject Menu;
     public GameObject SettingsPanel;
+    public GameObject VolumePanel;
     private Animator menuAnim;
     private Animator settingsPanelAnim;
+    private Animator menuVolume;
     private void Awake()
     {
         menuAnim = Menu.GetComponent<Animator>();
         settingsPanelAnim = SettingsPanel.GetComponent<Animator>();
+        menuVolume = VolumePanel.GetComponent<Animator>();
         //SettingsPanel.SetActive(false);
     }
     // Start is called before the first frame update
@@ -32,7 +35,6 @@ public class PressButton : MonoBehaviour
         menuAnim.SetBool("Open", false);
         settingsPanelAnim.SetBool("Open", true);
         settingsPanelAnim.SetBool("Close", false);
-
     }
 
     public void CloseSettings()
@@ -45,7 +47,13 @@ public class PressButton : MonoBehaviour
 
     public void PlayScene()
     {
-        SceneManager.LoadScene("Stage_1");
+        if (SceneManager.sceneCount == 1)
+        {
+            SceneManager.LoadScene("Stage_1");
+        }else
+        {         
+            SceneManager.UnloadScene(SceneManager.GetSceneByBuildIndex(0));
+        }
     }
     public void QuitGame()
     {
@@ -54,5 +62,10 @@ public class PressButton : MonoBehaviour
             UnityEditor.EditorApplication.isPlaying = false;
         }else
             Application.Quit();
+    }
+
+    public void Volume()
+    {
+        menuVolume.SetBool("Open", true);
     }
 }

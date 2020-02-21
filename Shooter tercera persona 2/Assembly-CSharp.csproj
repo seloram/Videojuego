@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\DropMe.cs" />
     <Compile Include="Assets\Scripts\Explosion.cs" />
     <Compile Include="Assets\Scripts\PanelManager.cs" />
+    <Compile Include="Assets\Scripts\PauseGame.cs" />
     <Compile Include="Assets\Scripts\pickupCoin.cs" />
     <Compile Include="Assets\Scripts\PressButton.cs" />
     <Compile Include="Assets\Scripts\pushPlayer.cs" />
