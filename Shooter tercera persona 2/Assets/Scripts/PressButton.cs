@@ -11,14 +11,17 @@ public class PressButton : MonoBehaviour
     public GameObject Menu;
     public GameObject SettingsPanel;
     public GameObject VolumePanel;
+    public GameObject ResolutionPanel;
     private Animator menuAnim;
     private Animator settingsPanelAnim;
     private Animator menuVolume;
+    private Animator menuResolution;
     private void Awake()
     {
         menuAnim = Menu.GetComponent<Animator>();
         settingsPanelAnim = SettingsPanel.GetComponent<Animator>();
         menuVolume = VolumePanel.GetComponent<Animator>();
+        menuResolution = ResolutionPanel.GetComponent<Animator>();
         //SettingsPanel.SetActive(false);
     }
     // Start is called before the first frame update
@@ -95,6 +98,9 @@ public class PressButton : MonoBehaviour
     public void Resolution()
     {
         CloseSubPanels();
+        Debug.Log("resolution in progress");
+        menuResolution.SetBool("Close", false);
+        menuResolution.SetBool("Open", true);
     }
     public void PlayScene()
     {
@@ -117,6 +123,7 @@ public class PressButton : MonoBehaviour
 
     public void Volume()
     {
+        CloseSubPanels();
         menuVolume.SetBool("Close", false);
         menuVolume.SetBool("Open", true);
     }
