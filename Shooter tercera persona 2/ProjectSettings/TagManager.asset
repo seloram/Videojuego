@@ -36,6 +36,11 @@ TagManager:
   - wShot
   - cShot
   - w2Shot
+  - MainCanvas
+  - settingsPanel
+  - mainPanel
+  - volumePanel
+  - subPanels
   layers:
   - Default
   - TransparentFX
