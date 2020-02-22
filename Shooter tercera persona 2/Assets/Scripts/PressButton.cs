@@ -12,16 +12,19 @@ public class PressButton : MonoBehaviour
     public GameObject SettingsPanel;
     public GameObject VolumePanel;
     public GameObject ResolutionPanel;
+    public GameObject DifficultyPanel;
     private Animator menuAnim;
     private Animator settingsPanelAnim;
     private Animator menuVolume;
     private Animator menuResolution;
+    private Animator menuDifficulty;
     private void Awake()
     {
         menuAnim = Menu.GetComponent<Animator>();
         settingsPanelAnim = SettingsPanel.GetComponent<Animator>();
         menuVolume = VolumePanel.GetComponent<Animator>();
         menuResolution = ResolutionPanel.GetComponent<Animator>();
+        menuDifficulty = DifficultyPanel.GetComponent<Animator>();
         //SettingsPanel.SetActive(false);
     }
     // Start is called before the first frame update
@@ -42,16 +45,15 @@ public class PressButton : MonoBehaviour
         menuAnim.SetBool("Open", false);
         settingsPanelAnim.SetBool("Open", true);
         settingsPanelAnim.SetBool("Close", false);
-
     }
 
     public void CloseSettings()
     {
+        CloseSubPanels();
         settingsPanelAnim.SetBool("Open", false);
         settingsPanelAnim.SetBool("Close", true);
         menuAnim.SetBool("Close", false);
-        menuAnim.SetBool("Open", true);
-        
+        menuAnim.SetBool("Open", true);       
 
         //var newPreviouslySelected = EventSystem.current.currentSelectedGameObject.GetComponentInParent<RectTransform>();
         //Animator[] gas = ga.GetComponentsInChildren<Animator>();
@@ -120,11 +122,16 @@ public class PressButton : MonoBehaviour
         }else
             Application.Quit();
     }
-
     public void Volume()
     {
         CloseSubPanels();
         menuVolume.SetBool("Close", false);
         menuVolume.SetBool("Open", true);
+    }
+    public void Difficulty()
+    {
+        CloseSubPanels();
+        menuDifficulty.SetBool("Close", false);
+        menuDifficulty.SetBool("Open", true);
     }
 }
