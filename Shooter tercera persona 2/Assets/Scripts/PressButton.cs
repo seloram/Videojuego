@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ using UnityEngine.UIElements;
 public class PressButton : MonoBehaviour
 {
     public GameObject Menu;
+    public AudioMixer audioMixer;
     public GameObject SettingsPanel;
     public GameObject VolumePanel;
     public GameObject ResolutionPanel;
@@ -30,11 +32,12 @@ public class PressButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject vol = GameObject.FindGameObjectWithTag("volumeInternalPanel");
+        vol.transform.Find("pMusicVolume").GetComponentInChildren<Text>().GetComponent<UnityEngine.UI.Text>().text = "Volume 100%";
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()   
     {
         
     }
@@ -126,12 +129,45 @@ public class PressButton : MonoBehaviour
     {
         CloseSubPanels();
         menuVolume.SetBool("Close", false);
-        menuVolume.SetBool("Open", true);
+        menuVolume.SetBool("Open", true);       
     }
     public void Difficulty()
     {
         CloseSubPanels();
         menuDifficulty.SetBool("Close", false);
         menuDifficulty.SetBool("Open", true);
+    }
+    public void SetVolume(float value)
+    {
+        AudioListener.volume = value;        
+        UpdateVolumeLabel();        
+    }
+
+    public void DecreaseQuality()
+    {
+        QualitySettings.DecreaseLevel();
+        UpdateQualityLabel();
+    }
+
+    public void IncreaseQuality()
+    {
+        QualitySettings.IncreaseLevel();
+        UpdateQualityLabel();
+    }
+
+    public void UpdateQualityLabel()
+    {
+        int currentQuality = QualitySettings.GetQualityLevel();
+        string qualityName = QualitySettings.names[currentQuality];
+        GameObject res = GameObject.FindGameObjectWithTag("panelResolution");
+        res.transform.Find("tResolution").GetComponent<UnityEngine.UI.Text>().text = "Actual Graphics Quality " + qualityName;
+    }
+
+    public void UpdateVolumeLabel()
+    {
+        float audioVolume = AudioListener.volume * 100;
+        GameObject vol = GameObject.FindGameObjectWithTag("volumeInternalPanel");
+        
+        vol.transform.Find("pMusicVolume").GetComponentInChildren<Text>().GetComponent<UnityEngine.UI.Text>().text = "Volume: " +audioVolume.ToString("f1") + "%";
     }
 }

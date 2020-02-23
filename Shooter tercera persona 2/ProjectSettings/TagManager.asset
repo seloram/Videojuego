@@ -43,6 +43,8 @@ TagManager:
   - subPanels
   - resolutionMenu
   - difficultyMenu
+  - volumeInternalPanel
+  - panelResolution
   layers:
   - Default
   - TransparentFX
