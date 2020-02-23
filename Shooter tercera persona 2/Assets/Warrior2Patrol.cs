@@ -32,6 +32,13 @@ public class Warrior2Patrol : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+
+        if (PressButton.difficulty == 3)
+        {
+            followRange = 30.0f;
+            idleRange = 30.0f;
+        }
         lastShoot = Time.time;
         agent = GetComponent<NavMeshAgent>();
         targetWPIndex = 1;

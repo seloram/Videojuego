@@ -45,6 +45,8 @@ TagManager:
   - difficultyMenu
   - volumeInternalPanel
   - panelResolution
+  - sliderVolume
+  - pausePanel
   layers:
   - Default
   - TransparentFX

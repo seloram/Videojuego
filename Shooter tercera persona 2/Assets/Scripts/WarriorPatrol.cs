@@ -32,6 +32,13 @@ public class WarriorPatrol : MonoBehaviour
 
     void Start()
     {
+
+
+        if (PressButton.difficulty == 3)
+        {
+            followRange = 30.0f;
+            idleRange = 30.0f;
+        }
         agent = GetComponent<NavMeshAgent>();
         targetWPIndex = 1;
         target= GameObject.FindGameObjectWithTag("Waypoints" + targetWPIndex).transform;

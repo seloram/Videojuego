@@ -16,6 +16,7 @@ public class Warrior2_shot : MonoBehaviour
     void Start()
     {
         lastShoot = Time.time;
+
     }
 
     // Update is called once per frame

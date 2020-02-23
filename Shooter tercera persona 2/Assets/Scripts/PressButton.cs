@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 
 public class PressButton : MonoBehaviour
 {
+    static public int difficulty;
     public GameObject Menu;
     public AudioMixer audioMixer;
     public GameObject SettingsPanel;
@@ -34,12 +35,14 @@ public class PressButton : MonoBehaviour
     {
         GameObject vol = GameObject.FindGameObjectWithTag("volumeInternalPanel");
         vol.transform.Find("pMusicVolume").GetComponentInChildren<Text>().GetComponent<UnityEngine.UI.Text>().text = "Volume 100%";
+        UnityEngine.UI.Slider s = GameObject.FindObjectOfType<UnityEngine.UI.Slider>();
+        s.value = AudioListener.volume;
     }
 
     // Update is called once per frame
     void Update()   
     {
-        
+        UpdateVolumeLabel();
     }
     public void Settings()
     {
@@ -139,7 +142,8 @@ public class PressButton : MonoBehaviour
     }
     public void SetVolume(float value)
     {
-        AudioListener.volume = value;        
+        AudioListener.volume = value;
+        GameParameters.volume = value;
         UpdateVolumeLabel();        
     }
 
@@ -157,6 +161,7 @@ public class PressButton : MonoBehaviour
 
     public void UpdateQualityLabel()
     {
+        GameParameters.quality = QualitySettings.GetQualityLevel();
         int currentQuality = QualitySettings.GetQualityLevel();
         string qualityName = QualitySettings.names[currentQuality];
         GameObject res = GameObject.FindGameObjectWithTag("panelResolution");
@@ -166,8 +171,20 @@ public class PressButton : MonoBehaviour
     public void UpdateVolumeLabel()
     {
         float audioVolume = AudioListener.volume * 100;
-        GameObject vol = GameObject.FindGameObjectWithTag("volumeInternalPanel");
-        
+        GameObject vol = GameObject.FindGameObjectWithTag("volumeInternalPanel");        
         vol.transform.Find("pMusicVolume").GetComponentInChildren<Text>().GetComponent<UnityEngine.UI.Text>().text = "Volume: " +audioVolume.ToString("f1") + "%";
+    }
+
+    public void Easy()
+    {
+        difficulty = 1;
+    }
+    public void Normal()
+    {
+        difficulty = 2;
+    }
+    public void Hard()
+    {
+        difficulty = 3;
     }
 }
