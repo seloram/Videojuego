@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameParameters : MonoBehaviour
 {
     static public float volume;
+    static public float sfxVolume;
     static public int quality;
     PressButton b;
     private void Awake()
@@ -18,15 +19,21 @@ public class GameParameters : MonoBehaviour
     {
         GameObject vol = GameObject.FindGameObjectWithTag("volumeInternalPanel");
         GameObject res = GameObject.FindGameObjectWithTag("panelResolution");
-    
+        GameObject sfx = GameObject.FindGameObjectWithTag("sfxInternalPanel");
+        sfxVolume = PressButton.sfxVolume;
+        
         volume = AudioListener.volume;
+
         quality = QualitySettings.GetQualityLevel();
     }
 
     // Update is called once per frame
     void Update()
     {
+        sfxVolume = PressButton.sfxVolume;
+        
         b.UpdateQualityLabel();
         b.UpdateVolumeLabel();
+        b.UpdateSFXVolumeLabel();
     }
 }

@@ -10,6 +10,7 @@ using UnityEngine.UIElements;
 public class PressButton : MonoBehaviour
 {
     static public int difficulty;
+    static public float sfxVolume=1.0f;
     public GameObject Menu;
     public AudioMixer audioMixer;
     public GameObject SettingsPanel;
@@ -23,6 +24,7 @@ public class PressButton : MonoBehaviour
     private Animator menuDifficulty;
     private void Awake()
     {
+        
         menuAnim = Menu.GetComponent<Animator>();
         settingsPanelAnim = SettingsPanel.GetComponent<Animator>();
         menuVolume = VolumePanel.GetComponent<Animator>();
@@ -33,16 +35,31 @@ public class PressButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject vol = GameObject.FindGameObjectWithTag("volumeInternalPanel");
-        vol.transform.Find("pMusicVolume").GetComponentInChildren<Text>().GetComponent<UnityEngine.UI.Text>().text = "Volume 100%";
-        UnityEngine.UI.Slider s = GameObject.FindObjectOfType<UnityEngine.UI.Slider>();
-        s.value = AudioListener.volume;
+        GameObject volM = GameObject.FindGameObjectWithTag("volumeInternalPanel");
+        volM.transform.Find("pMusicVolume").GetComponentInChildren<Text>().GetComponentInChildren<UnityEngine.UI.Text>().text = "Music Volume: 100%";       
+        
+        GameObject volS = GameObject.FindGameObjectWithTag("sfxInternalPanel");
+        volS.transform.Find("pSfxVolume").GetComponentInChildren<Text>().GetComponentInChildren<UnityEngine.UI.Text>().text = "SFX Volume: 100%";       
+        UnityEngine.UI.Slider[] s = GameObject.FindObjectsOfType<UnityEngine.UI.Slider>();
+
+        foreach (UnityEngine.UI.Slider sli in s)
+        {
+            if (sli.name == "SliderVolume")
+            {
+                sli.value = AudioListener.volume;
+            }
+            if (sli.name == "SliderSFX")
+            {
+                sli.value = sfxVolume;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()   
     {
         UpdateVolumeLabel();
+        UpdateSFXVolumeLabel();
     }
     public void Settings()
     {
@@ -172,7 +189,20 @@ public class PressButton : MonoBehaviour
     {
         float audioVolume = AudioListener.volume * 100;
         GameObject vol = GameObject.FindGameObjectWithTag("volumeInternalPanel");        
-        vol.transform.Find("pMusicVolume").GetComponentInChildren<Text>().GetComponent<UnityEngine.UI.Text>().text = "Volume: " +audioVolume.ToString("f1") + "%";
+        vol.transform.Find("pMusicVolume").GetComponentInChildren<Text>().GetComponent<UnityEngine.UI.Text>().text = "Music Volume: " +audioVolume.ToString("f1") + "%";
+    }
+    public void UpdateSFXVolumeLabel()
+    {       
+        float audioVolume = sfxVolume * 100;
+        GameObject vol = GameObject.FindGameObjectWithTag("sfxInternalPanel");
+        vol.transform.Find("pSfxVolume").GetComponentInChildren<Text>().GetComponent<UnityEngine.UI.Text>().text = "SFX Volume: " + audioVolume.ToString("f1") + "%";
+    }
+
+
+    public void SetSfxVolume(float value)
+    {        
+        sfxVolume = value;
+        UpdateSFXVolumeLabel();
     }
 
     public void Easy()
