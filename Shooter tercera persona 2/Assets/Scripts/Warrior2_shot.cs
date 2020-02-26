@@ -9,6 +9,7 @@ public class Warrior2_shot : MonoBehaviour
     public GameObject m_shotPrefab;
     public Texture2D m_guiTexture;
     public float rotateSpeed = 3.0f;
+    public int ammunition = 5;
     public GameObject target;
     public float fireRate = 0.5f;
     private float lastShoot;
@@ -16,7 +17,6 @@ public class Warrior2_shot : MonoBehaviour
     void Start()
     {
         lastShoot = Time.time;
-
     }
 
     // Update is called once per frame
@@ -25,18 +25,31 @@ public class Warrior2_shot : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             if (GetDistance(target.transform) <= 10.0f)
-            {      
+            {
                 if (lastShoot < Time.time)
                 {
-                    GameObject clip = GameObject.FindGameObjectWithTag("soundLaser");
-                    clip.GetComponent<AudioSource>().Play();
-                    lastShoot = Time.time + fireRate;
-                    GameObject go = GameObject.Instantiate(m_shotPrefab, m_muzzle.position, m_muzzle.rotation) as GameObject;
-                    GameObject.Destroy(go, 3f);
+
+                    if (this.tag == "warrior 2" && ammunition <= 5 && ammunition > 0)
+                    {
+                        GameObject clip = GameObject.FindGameObjectWithTag("laserW2");
+                        clip.GetComponent<AudioSource>().Play();
+                        lastShoot = Time.time + fireRate;
+                        GameObject go = GameObject.Instantiate(m_shotPrefab, m_muzzle.position, m_muzzle.rotation) as GameObject;
+                        GameObject.Destroy(go, 3f);
+                    }
+                    if (this.tag == "warrior")
+                    {
+                        GameObject clip = GameObject.FindGameObjectWithTag("laserW1");
+                        clip.GetComponent<AudioSource>().Play();
+                        lastShoot = Time.time + fireRate;
+                        GameObject go = GameObject.Instantiate(m_shotPrefab, m_muzzle.position, m_muzzle.rotation) as GameObject;
+                        GameObject.Destroy(go, 3f);
+                    }
                 }
             }
         }
     }
+
     IEnumerator shoot()
     {
         yield return new WaitForSeconds(100.0f);

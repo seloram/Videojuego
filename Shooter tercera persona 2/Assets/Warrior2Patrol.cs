@@ -50,7 +50,7 @@ public class Warrior2Patrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         //Debug.Log("estado" + this.currentState);
         
             
@@ -143,11 +143,18 @@ public class Warrior2Patrol : MonoBehaviour
             //RotateTowardsTarget();            
             
             agent.SetDestination(target.position);
+            
             if (GetDistance(target.transform) > idleRange && target.tag.CompareTo("Player") == 0)
             {
-                Debug.Log("sale de idle");
                 this.currentState = EnemyState.Idle;
             }
+            if (GetComponent<Warrior2_shot>().ammunition <= 0)
+            {
+                agent.SetDestination(target.position);
+                StartCoroutine(reload());
+            }else
+                GetComponent<Warrior2_shot>().ammunition -= 1;
+
             if (GetDistance(target.transform) < 2.0f)
             {
                 agent.SetDestination(this.transform.position);
@@ -181,6 +188,16 @@ public class Warrior2Patrol : MonoBehaviour
         else
             return false;
     }
+    IEnumerator reload()
+    {
+        yield return new WaitForSeconds(3);
+        GameObject clip = GameObject.FindGameObjectWithTag("reload");
+        clip.GetComponent<AudioSource>().Play();
+        GetComponent<Warrior2_shot>().ammunition = 5;
+        this.currentState = EnemyState.Follow;
+
+
+    } 
 
     IEnumerator DieState()
     {

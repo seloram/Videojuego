@@ -8,6 +8,7 @@ public class InitialParameters : MonoBehaviour
     static public float volume;
     static public int quality;
     public AudioMixer sfxVolume;
+    public AudioMixer musicVolume;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,7 @@ public class InitialParameters : MonoBehaviour
     void Update()
     {
         sfxVolume.SetFloat("sfxVolume", GameParameters.sfxVolume*100-80);
-        
+        musicVolume.SetFloat("musicVolume", GameParameters.musicVolume * 100 - 80);
         Debug.Log("initialparameters->sfxvolume" + GameParameters.sfxVolume);
     }
 }

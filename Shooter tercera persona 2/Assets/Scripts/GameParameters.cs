@@ -6,6 +6,7 @@ public class GameParameters : MonoBehaviour
 {
     static public float volume;
     static public float sfxVolume;
+    static public float musicVolume;
     static public int quality;
     PressButton b;
     private void Awake()
@@ -21,8 +22,8 @@ public class GameParameters : MonoBehaviour
         GameObject res = GameObject.FindGameObjectWithTag("panelResolution");
         GameObject sfx = GameObject.FindGameObjectWithTag("sfxInternalPanel");
         sfxVolume = PressButton.sfxVolume;
-        
-        volume = AudioListener.volume;
+
+        musicVolume = PressButton.musicVolume;
 
         quality = QualitySettings.GetQualityLevel();
     }
@@ -31,7 +32,7 @@ public class GameParameters : MonoBehaviour
     void Update()
     {
         sfxVolume = PressButton.sfxVolume;
-        
+        musicVolume = PressButton.musicVolume;
         b.UpdateQualityLabel();
         b.UpdateVolumeLabel();
         b.UpdateSFXVolumeLabel();

@@ -48,6 +48,9 @@ TagManager:
   - sliderVolume
   - pausePanel
   - sfxInternalPanel
+  - reload
+  - laserW2
+  - laserW1
   layers:
   - Default
   - TransparentFX
