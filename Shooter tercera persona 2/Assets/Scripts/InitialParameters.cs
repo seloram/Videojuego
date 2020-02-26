@@ -21,6 +21,8 @@ public class InitialParameters : MonoBehaviour
         }
         GameObject pause = GameObject.FindGameObjectWithTag("pausePanel");
         pause.transform.localScale = new Vector3(0, 0, 0);
+        GameObject animCountDown = GameObject.FindGameObjectWithTag("animCountDown");
+        animCountDown.transform.localScale = new Vector3(0, 0, 0);
         //sfxVolume.SetFloat("sfxVolume", GameParameters.sfxVolume);
         
         //AudioListener.volume = PressButton..volume;
@@ -30,8 +32,8 @@ public class InitialParameters : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sfxVolume.SetFloat("sfxVolume", GameParameters.sfxVolume*100-80);
-        musicVolume.SetFloat("musicVolume", GameParameters.musicVolume * 100 - 80);
+        sfxVolume.SetFloat("sfxVolume", GameParameters.sfxVolume*100-100);
+        musicVolume.SetFloat("musicVolume", GameParameters.musicVolume * 100 - 100);
         Debug.Log("initialparameters->sfxvolume" + GameParameters.sfxVolume);
     }
 }

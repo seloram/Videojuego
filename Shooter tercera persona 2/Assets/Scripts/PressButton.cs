@@ -187,7 +187,11 @@ public class PressButton : MonoBehaviour
 
     public void UpdateVolumeLabel()
     {
-        audioMixer.SetFloat("musicVolume", GameParameters.musicVolume * 100 - 80);
+        if (audioMixer != null)
+        {
+            audioMixer.SetFloat("musicVolume", GameParameters.musicVolume * 100 - 100);
+        }
+        
         float audioVolume = musicVolume * 100;
         GameObject vol = GameObject.FindGameObjectWithTag("volumeInternalPanel");        
         vol.transform.Find("pMusicVolume").GetComponentInChildren<Text>().GetComponent<UnityEngine.UI.Text>().text = "Music Volume: " +audioVolume.ToString("f1") + "%";

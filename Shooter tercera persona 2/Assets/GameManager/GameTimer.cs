@@ -7,8 +7,9 @@ public class GameTimer : MonoBehaviour
 {
     public float maxTime = 60f;
     private float countdown = 0f;
-    Text timeLeft;
-
+    public AudioClip audio;
+    public Text timeLeft;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +21,10 @@ public class GameTimer : MonoBehaviour
     void Update()
     {
         countdown -= Time.deltaTime;
-        timeLeft.text =  ((int)countdown).ToString();   
+        timeLeft.text =  ((int)countdown).ToString();
+
     }
+
     public float getCountDown()
     {
         return countdown;

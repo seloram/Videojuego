@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-8564019130227474160
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 227c8d275c5e8994ab7ba4532b0686f4
+  m_EffectName: Highpass
+  m_MixLevel: 987f12123266c57478780f3379c8a68a
+  m_Parameters:
+  - m_ParameterName: Cutoff freq
+    m_GUID: 336d2f982150b95418088512e64a5cc2
+  - m_ParameterName: Resonance
+    m_GUID: 42435509a35fdda478cb48bb009bfb0a
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -66,5 +84,31 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: c1d149ca87731764d9d39026d757640d
-  m_FloatValues: {}
+  m_FloatValues:
+    38e8c0225bb474847a259510b30cbcbc: 20
+    67ba2dd246474d34d882b7dc0bf675ef: 1.38
   m_TransitionOverrides: {}
+--- !u!244 &5674210059918621319
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 86eaa900d0bf2c94baa4ef380d84c995
+  m_EffectName: Echo
+  m_MixLevel: e2fd70dee1082ef41a31f8c89fb3be11
+  m_Parameters:
+  - m_ParameterName: Delay
+    m_GUID: 5148157b3ddcfa54ea5b400c7ed2e8a2
+  - m_ParameterName: Decay
+    m_GUID: 31ceee2bf1902d54584bf3749d1125d6
+  - m_ParameterName: Max channels
+    m_GUID: 7ba0f414bfbab984eb118d3e61febe4f
+  - m_ParameterName: Drymix
+    m_GUID: aae0d3b2bc941324cb15b14d86670f34
+  - m_ParameterName: Wetmix
+    m_GUID: aaa8635b629fe1641be6b84b635f185b
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0

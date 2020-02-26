@@ -51,6 +51,9 @@ TagManager:
   - reload
   - laserW2
   - laserW1
+  - ambience
+  - animCountDown
+  - countAnim
   layers:
   - Default
   - TransparentFX
