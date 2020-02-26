@@ -54,6 +54,7 @@ TagManager:
   - ambience
   - animCountDown
   - countAnim
+  - endGame
   layers:
   - Default
   - TransparentFX

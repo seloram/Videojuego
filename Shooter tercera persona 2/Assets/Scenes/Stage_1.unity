@@ -3373,6 +3373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audio: {fileID: 8300000, guid: 06f6500456e0d144ebd70198b1b60926, type: 3}
+  audioEndGame: {fileID: 8300000, guid: d15a14459550957488b7b178d0708054, type: 3}
 --- !u!1001 &811429301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5757,7 +5758,7 @@ GameObject:
   - component: {fileID: 1905093799}
   m_Layer: 5
   m_Name: EndGame
-  m_TagString: Untagged
+  m_TagString: endGame
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

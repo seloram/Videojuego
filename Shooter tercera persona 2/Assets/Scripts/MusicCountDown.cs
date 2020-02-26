@@ -6,6 +6,7 @@ public class MusicCountDown : MonoBehaviour
 {
     public AudioClip audio;
     private int count;
+    public AudioClip audioEndGame;
     
     Animator anim;
     // Start is called before the first frame update
@@ -20,12 +21,9 @@ public class MusicCountDown : MonoBehaviour
         if (int.Parse(GameObject.Find("GameTimeLeft").GetComponent<GameTimer>().timeLeft.text) == 10)
         {
             AudioSource clip = GetComponent<AudioSource>();
-            clip.Stop();
-            Debug.Log("paramos");
-            clip.clip = audio;
-            Debug.Log("cambiamos");
-            clip.Play();
-            Debug.Log("ponemos play");             
+            clip.Stop();       
+            clip.clip = audio;        
+            clip.Play();           
         }
         count = int.Parse(GameObject.Find("GameTimeLeft").GetComponent<GameTimer>().timeLeft.text);
         if (count <= 5&&count>=1)
@@ -38,10 +36,18 @@ public class MusicCountDown : MonoBehaviour
             Debug.Log("aaaa" + a.ToString());            
             StartCoroutine(nextNumber(a));
         }
+ 
+            string endgame = GameObject.FindGameObjectWithTag("endGame").GetComponent<UnityEngine.UI.Text>().text;
+            if(endgame== "Game Over!!!")
+            {
+                AudioSource clip = GetComponent<AudioSource>();
+                clip.Stop();
+                clip.clip = audioEndGame;
+                clip.Play();
+            }        
     }
     IEnumerator nextNumber(Animator a)
-    {
-        
+    {        
         yield return new WaitForSeconds(a.GetComponents<Animation>().Length);
         GameObject animCount = GameObject.FindGameObjectWithTag("countAnim");
         animCount.GetComponent<UnityEngine.UI.Text>().text = GameObject.Find("GameTimeLeft").GetComponent<GameTimer>().timeLeft.text;        
