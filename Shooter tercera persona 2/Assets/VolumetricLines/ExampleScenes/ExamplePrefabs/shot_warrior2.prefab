@@ -205,6 +205,8 @@ MonoBehaviour:
   fragPlayer: {fileID: 4694745317382967781, guid: 8991b8e632fbddb45bb821c715ea9025,
     type: 3}
   rollManager: {fileID: 0}
+  hit: {fileID: 8787339693385777204, guid: 09356d057a2fce344b90ca1746b4393b, type: 3}
+  hitw1: {fileID: 2191784225185203025, guid: 6248abd4ed5408542b8783ce30e35fc3, type: 3}
   player: {fileID: 0}
   d: {fileID: 0}
   material: {fileID: 2100000, guid: c9abdaf4e498a2e459b1656f4289b468, type: 2}

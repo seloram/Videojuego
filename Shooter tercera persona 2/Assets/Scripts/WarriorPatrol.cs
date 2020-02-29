@@ -123,6 +123,12 @@ public class WarriorPatrol : MonoBehaviour
             {
                 this.currentState = EnemyState.Idle;
             }
+            if (GetDistance(target.transform) < 2.0f)
+            {
+                agent.SetDestination(this.transform.position);
+            }
+            else
+                agent.SetDestination(target.position);
             if (GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>().attachedRigidbody.constraints==RigidbodyConstraints.FreezePosition&&this.currentState==EnemyState.Follow)
             {
                 this.GetComponent<Warrior2_shot>().fireRate = 6.06f;

@@ -6,6 +6,8 @@ public class KillPlayerWarrior2 : MonoBehaviour
 {
     public GameObject fragPlayer;
     public RollManager rollManager;
+    public GameObject hit;
+    public GameObject hitw1;
     public GameObject player;
     public DestroyPlayer d;
     public Material material;
@@ -36,17 +38,23 @@ public class KillPlayerWarrior2 : MonoBehaviour
             {
                 d.Explosion(player, fragPlayer);
             }
-            if (this.tag == "wShot")
+            else
             {
-                //GameObject.Find("Player")..GetComponent<Ball>();
-                other.attachedRigidbody.constraints = RigidbodyConstraints.FreezePosition;
-                //player.GetComponent<Renderer>().material = material;
-                //StartCoroutine(freezePlayer());
-                ////freezePlayer(other);
+                Vector3 a = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.7f);
+                GameObject go = GameObject.Instantiate(hit, a, this.transform.rotation) as GameObject;
+                GameObject.Destroy(go, 0.5f);
+               
+                if (this.tag == "wShot")
+                {
+                    other.attachedRigidbody.constraints = RigidbodyConstraints.FreezePosition;
+                }
             }
         }
         if (other.CompareTag("pilar"))
         {
+            Vector3 a = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.7f);
+            GameObject go = GameObject.Instantiate(hit, a, this.transform.rotation) as GameObject;
+            GameObject.Destroy(go, 0.5f);
             Destroy(this.gameObject);
             GameObject clip = GameObject.FindGameObjectWithTag("soundLaserWall");
             clip.GetComponent<AudioSource>().Play();
