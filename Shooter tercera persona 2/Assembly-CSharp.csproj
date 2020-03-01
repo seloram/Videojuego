@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\DragPanel.cs" />
     <Compile Include="Assets\Scripts\DropMe.cs" />
     <Compile Include="Assets\Scripts\Explosion.cs" />
+    <Compile Include="Assets\Scripts\FillScores.cs" />
     <Compile Include="Assets\Scripts\GameParameters.cs" />
     <Compile Include="Assets\Scripts\InitialParameters.cs" />
     <Compile Include="Assets\Scripts\MusicCountDown.cs" />

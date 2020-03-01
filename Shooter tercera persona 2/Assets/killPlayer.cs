@@ -54,9 +54,9 @@ public class killPlayer : MonoBehaviour
         }
         if (other.CompareTag("pilar"))
         {
-            Vector3 b = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
-            GameObject go2 = GameObject.Instantiate(hitc, b, this.transform.rotation) as GameObject;
-            GameObject.Destroy(go2, 0.5f);
+            //Vector3 b = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+            //GameObject go2 = GameObject.Instantiate(hitc, b, this.transform.rotation) as GameObject;
+            //GameObject.Destroy(go2, 0.5f);
             Destroy(this.gameObject);
             GameObject clip = GameObject.FindGameObjectWithTag("soundLaserWall");
             clip.GetComponent<AudioSource>().Play();

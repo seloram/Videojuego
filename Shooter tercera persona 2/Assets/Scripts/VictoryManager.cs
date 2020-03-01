@@ -9,7 +9,7 @@ public class VictoryManager : MonoBehaviour
     Text victoryText;
     GameTimer gametimer;
     RollManager rollmanager;
-
+    static public int score;
     private void Awake()
     {
         victoryText = GetComponent<Text>();
@@ -22,10 +22,14 @@ public class VictoryManager : MonoBehaviour
 
     // Update is called once per frame
     public IEnumerator TheEnd()
-    {     
+    {
+        score = calculateScore();
+        Debug.Log("score--->2" + score);
         yield return new WaitForSeconds(2f);
         GameObject gamemanager = GameObject.Find("GameTimeLeft");
         Destroy(gamemanager);
+
+        
         Time.timeScale = (isActiveAndEnabled) ? 0 : 1f;     
     }
 
@@ -37,11 +41,11 @@ public class VictoryManager : MonoBehaviour
                 victoryText.text = "Game Over!!!";
                 if (Input.GetKeyDown("space"))
                 {
-                    SceneManager.LoadScene(0);
+                    SceneManager.LoadScene(2);
                     Time.timeScale = 1f;
                 }
                 StartCoroutine(TheEnd());
-            }
+            }            
         }
 
         if (CoinsManager.currentCoinCount == 0)
@@ -49,10 +53,11 @@ public class VictoryManager : MonoBehaviour
             victoryText.text = "You Win!!!";
             if (Input.GetKeyDown("space"))
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(2);
                 Time.timeScale = 1f;
             }
             StartCoroutine(TheEnd());
+
         }
 
         if (RollManager.currentHealth == 0 || GameObject.FindGameObjectWithTag("Player")==null)
@@ -60,7 +65,7 @@ public class VictoryManager : MonoBehaviour
             victoryText.text = "Game Over!!!";
             if (Input.GetKeyDown("space"))
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(2);
                 Time.timeScale = 1f;
             }
             StartCoroutine(TheEnd());
@@ -68,13 +73,24 @@ public class VictoryManager : MonoBehaviour
 
         if (gametimer.getCountDown()<=0)
         {
-            victoryText.text = "Game Over!!!";
+            victoryText.text = "Game Over!!!";            
             if (Input.GetKeyDown("space"))
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(2);
                 Time.timeScale = 1f;
             }
             StartCoroutine(TheEnd());
         }
     }
+    private int calculateScore()
+    {
+        int coins = CoinsManager.currentCoinCount;
+        int health = RollManager.currentHealth;
+        int time = (int)gametimer.getCountDown();
+        Debug.Log("time" + time);
+        score = (5 - coins) * health - time;
+        Debug.Log("score--->" + score);
+        return score;
+    }
+
 }
