@@ -1017,8 +1017,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc5a4f03b545b143b4f5d47ce639a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bdScore:
+    name: 
+    points: 0
   font: {fileID: 0}
   scoreList: {fileID: 125978865}
+  textInput: {fileID: 1428960731}
+  placeholder: {fileID: 1576617280}
   inputNamePlayer: {fileID: 1601770766}
 --- !u!1 &954845600
 GameObject:
@@ -2107,7 +2112,7 @@ RectTransform:
   m_GameObject: {fileID: 1428960731}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1601770767}
   m_RootOrder: 1
@@ -2170,7 +2175,7 @@ GameObject:
   - component: {fileID: 1576617282}
   m_Layer: 5
   m_Name: Placeholder
-  m_TagString: Untagged
+  m_TagString: placeholder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2263,7 +2268,7 @@ RectTransform:
   m_GameObject: {fileID: 1601770766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1576617281}
   - {fileID: 1428960732}

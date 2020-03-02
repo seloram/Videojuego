@@ -70,6 +70,7 @@ TagManager:
   - namePlayer
   - scoreListPanel
   - inputNamePlayer
+  - placeholder
   layers:
   - Default
   - TransparentFX

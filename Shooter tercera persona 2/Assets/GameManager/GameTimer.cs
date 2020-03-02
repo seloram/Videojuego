@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameTimer : MonoBehaviour
 {
-    public float maxTime = 6f;
+    public float maxTime;
     private float countdown = 0f;
     public AudioClip audio;
     public Text timeLeft;
