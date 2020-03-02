@@ -162,7 +162,7 @@ public class FillScores : MonoBehaviour
     
     IEnumerator delay()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(8);
         Debug.Log("delay");
         SceneManager.LoadScene("MenuScene");
     }   
@@ -206,7 +206,7 @@ public class FillScores : MonoBehaviour
 
     void ScoreDone()
     {
-        classScore.Sort((a, b) => a.points.CompareTo(b.points));
+        classScore.Sort((a, b) => b.points.CompareTo(a.points));
         if (!done)
         {
             WriteJson();
