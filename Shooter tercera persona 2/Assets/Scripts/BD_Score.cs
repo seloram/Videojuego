@@ -6,7 +6,7 @@ using UnityEngine;
 public class BD_Score
 {
     public string name;
-    public string points;
+    public int points;
 
         
     // Start is called before the first frame update

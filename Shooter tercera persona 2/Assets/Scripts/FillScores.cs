@@ -11,7 +11,6 @@ using System.Text;
 public class FillScores : MonoBehaviour
 {
     string path, jsonstring;
-
     public BD_Score bdScore;
     public Font font;
     string scoresFile = "";
@@ -23,12 +22,12 @@ public class FillScores : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-
-
         classScore = new List<BD_Score>();
         bdScore = new BD_Score();
         ReadJson();
+        Debug.Log("classscore+" + classScore.Count);
+        Debug.Log("classscorename" + classScore[0].name);
+
         scoreList.transform.localScale = new Vector3(0, 0, 0);
         //inputNamePlayer = GameObject.FindGameObjectWithTag("inputNamePlayer");
         inputNamePlayer.GetComponent<Animator>().SetBool("Open", true);
@@ -36,7 +35,6 @@ public class FillScores : MonoBehaviour
         //scoresFile = PlayerPrefs.GetString("scores");
         //Debug.Log("scoresfileinicial" + scoresFile);
         //bdScore = JsonUtility.FromJson<BD_Score>(scoresFile);
-
     }
 
     // Update is called once per frame
@@ -47,6 +45,7 @@ public class FillScores : MonoBehaviour
             //Debug.Log("tamaño" + inputNamePlayer.transform.localScale.ToString());
             //inputNamePlayer.transform.localScale = new Vector3(0, 0, 0);
             //Debug.Log("tamaño" + inputNamePlayer.transform.localScale.ToString());
+            classScore.Sort((a, b) => a.points.CompareTo(b.points));
             WriteJson();
             inputNamePlayer.GetComponent<Animator>().SetBool("Close", true);
             inputNamePlayer.GetComponent<Animator>().SetBool("Open", false);
@@ -62,7 +61,7 @@ public class FillScores : MonoBehaviour
         namePlayer = GameObject.FindGameObjectWithTag("namePlayer").GetComponent<UnityEngine.UI.Text>().text;
 
         bdScore.name = namePlayer;
-        bdScore.points = VictoryManager.score.ToString();
+        bdScore.points = VictoryManager.score;
 
         classScore.Add(bdScore);
         Debug.Log("cuenta"+classScore.Count);
@@ -76,9 +75,9 @@ public class FillScores : MonoBehaviour
         GameObject points = null;
         string name = "name_";
         string score = "score_";
+
         for (int i = 1; i <= 5; i++)
         {
-
             name += i;
             score += i;
             try
@@ -90,7 +89,7 @@ public class FillScores : MonoBehaviour
                 Debug.Log("bdscore2" + bdScore.name);
                 Debug.Log("bdscore2" + bdScore.points);
                 nameScore.GetComponent<UnityEngine.UI.Text>().text = classScore[i].name;
-                points.GetComponent<UnityEngine.UI.Text>().text = classScore[i].points;
+                points.GetComponent<UnityEngine.UI.Text>().text = classScore[i].points.ToString();
                 //if (nameScore.GetComponent<UnityEngine.UI.Text>().text == "")
                 //{
                 //    Debug.Log("44444");
@@ -103,6 +102,8 @@ public class FillScores : MonoBehaviour
                 //}
             }
             catch { }
+             name = "name_";
+             score = "score_";
         }
         Debug.Log("delay antes");
         done = true;
@@ -114,24 +115,27 @@ public class FillScores : MonoBehaviour
         path = Application.dataPath + "/ScoreRecords.json";
         using (StreamReader r = new StreamReader(new FileStream(path, FileMode.OpenOrCreate)))
         {            
-            jsonstring = r.ReadToEnd();
+            jsonstring = r.ReadLine();
+            while (jsonstring != null)
+            {
+                BD_Score x = JsonUtility.FromJson<BD_Score>(jsonstring);
+                classScore.Add(x);
+                jsonstring = r.ReadLine();
+            }
             
-            BD_Score x = JsonUtility.FromJson<BD_Score>(jsonstring);
-            classScore.Add(x);
         }
     }
     void WriteJson()
-    {
-        foreach(BD_Score b in classScore)
-        {            
-            using (StreamWriter w = new StreamWriter(new FileStream(path, FileMode.Create)))
+    {        
+        using (StreamWriter w = new StreamWriter(new FileStream(path, FileMode.Create)))
+        {
+            foreach (BD_Score b in classScore)
             {
                 string newGamer = JsonUtility.ToJson(b);
                 w.WriteLine(newGamer);
-            }                        
+            }
         }
     }  
-
     
     IEnumerator delay()
     {
