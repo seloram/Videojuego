@@ -92,6 +92,7 @@ public class FillScores : MonoBehaviour
             bdScore.name = namePlayer;
             bdScore.points = VictoryManager.score;
             classScore.Add(bdScore);
+            classScore.Sort((a, b) => b.points.CompareTo(a.points));
         }
 
         GameObject nameScore = null;

@@ -55,7 +55,7 @@ public class PauseGame : MonoBehaviour
         if (!m_Paused)
         {       
             Time.timeScale = 1f;
-            AudioListener.volume = GameParameters.volume;
+            AudioListener.volume = GameParameters.musicVolume;
             pauseP.transform.localScale = new Vector3(0, 0, 0);
         }
         else

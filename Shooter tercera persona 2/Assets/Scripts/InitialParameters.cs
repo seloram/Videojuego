@@ -32,8 +32,8 @@ public class InitialParameters : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sfxVolume.SetFloat("sfxVolume", GameParameters.sfxVolume*100-100);
-        musicVolume.SetFloat("musicVolume", GameParameters.musicVolume * 100 - 100);
+        sfxVolume.SetFloat("sfxVolume", GameParameters.sfxVolume * 100 - 80);
+        musicVolume.SetFloat("musicVolume", GameParameters.musicVolume * 100 - 80);
         Debug.Log("initialparameters->sfxvolume" + GameParameters.sfxVolume);
     }
 }

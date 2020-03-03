@@ -189,7 +189,7 @@ public class PressButton : MonoBehaviour
     {
         if (audioMixer != null)
         {
-            audioMixer.SetFloat("musicVolume", GameParameters.musicVolume * 100 - 100);
+            audioMixer.SetFloat("musicVolume", GameParameters.musicVolume * 100 - 80);
         }
         
         float audioVolume = musicVolume * 100;
