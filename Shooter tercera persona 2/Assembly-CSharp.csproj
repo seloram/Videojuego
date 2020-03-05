@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\FillScores.cs" />
     <Compile Include="Assets\Scripts\GameParameters.cs" />
     <Compile Include="Assets\Scripts\InitialParameters.cs" />
+    <Compile Include="Assets\Scripts\Inmortal.cs" />
     <Compile Include="Assets\Scripts\MusicCountDown.cs" />
     <Compile Include="Assets\Scripts\PanelManager.cs" />
     <Compile Include="Assets\Scripts\PauseGame.cs" />

@@ -47,6 +47,11 @@ public class PauseGame : MonoBehaviour
             //SceneManager.SetActiveScene(s2);
             MenuOn();
         }
+        if (Input.GetKeyUp(KeyCode.P))
+        {
+            Time.timeScale = 0f;
+            SceneManager.LoadSceneAsync("MenuScene",LoadSceneMode.Additive);
+        }
     }
 
     private void MenuOn()

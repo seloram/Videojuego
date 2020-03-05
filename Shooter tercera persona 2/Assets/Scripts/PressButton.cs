@@ -36,6 +36,7 @@ public class PressButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         GameObject volM = GameObject.FindGameObjectWithTag("volumeInternalPanel");
         volM.transform.Find("pMusicVolume").GetComponentInChildren<Text>().GetComponentInChildren<UnityEngine.UI.Text>().text = "Music Volume: 100%";       
         
@@ -59,6 +60,11 @@ public class PressButton : MonoBehaviour
     // Update is called once per frame
     void Update()   
     {
+        if (SceneManager.sceneCount > 1)
+        {
+            Scene[] a = SceneManager.GetAllScenes();
+            SceneManager.UnloadSceneAsync(a[2]);            
+        }
         UpdateVolumeLabel();
         UpdateSFXVolumeLabel();
     }
@@ -128,16 +134,25 @@ public class PressButton : MonoBehaviour
         menuResolution.SetBool("Close", false);
         menuResolution.SetBool("Open", true);
     }
+
     public void PlayScene()
     {
-        if (SceneManager.sceneCount == 1)
+        Debug.Log("escenas: " + SceneManager.sceneCount);
+        if (SceneManager.sceneCount > 1)
         {
+            Scene[] a = SceneManager.GetAllScenes();
+            foreach (Scene s in a)
+            {
+                if (s.name == "MenuScene")
+                {
+                    SceneManager.UnloadSceneAsync(s);
+                }
+            }
+            Time.timeScale = 1f;
+        }else                
             SceneManager.LoadScene("Stage_1");
-        }else
-        {         
-            SceneManager.UnloadScene(SceneManager.GetSceneByBuildIndex(0));
-        }
     }
+
     public void QuitGame()
     {
         if (UnityEditor.EditorApplication.isPlaying)
