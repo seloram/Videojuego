@@ -2236,7 +2236,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 3.03e-43, y: 4.5919e-41, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -3252,7 +3252,6 @@ GameObject:
   m_Component:
   - component: {fileID: 781700191}
   - component: {fileID: 781700190}
-  - component: {fileID: 781700192}
   m_Layer: 0
   m_Name: ambience
   m_TagString: ambience
@@ -3371,20 +3370,6 @@ Transform:
   m_Father: {fileID: 1199766063}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &781700192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781700189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdfc76d5b2c0e1d4a82663b7e74cf04e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: 06f6500456e0d144ebd70198b1b60926, type: 3}
-  audioEndGame: {fileID: 8300000, guid: d15a14459550957488b7b178d0708054, type: 3}
 --- !u!1001 &811429301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5845,6 +5830,7 @@ GameObject:
   - component: {fileID: 1905093801}
   - component: {fileID: 1905093800}
   - component: {fileID: 1905093799}
+  - component: {fileID: 1905093802}
   m_Layer: 5
   m_Name: EndGame
   m_TagString: endGame
@@ -5925,6 +5911,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905093797}
   m_CullTransparentMesh: 0
+--- !u!114 &1905093802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905093797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfc76d5b2c0e1d4a82663b7e74cf04e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: {fileID: 8300000, guid: 06f6500456e0d144ebd70198b1b60926, type: 3}
+  audioEndGame: {fileID: 8300000, guid: d15a14459550957488b7b178d0708054, type: 3}
+  clip: {fileID: 781700190}
 --- !u!1001 &1909574514
 PrefabInstance:
   m_ObjectHideFlags: 0

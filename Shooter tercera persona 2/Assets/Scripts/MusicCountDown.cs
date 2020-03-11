@@ -9,6 +9,7 @@ public class MusicCountDown : MonoBehaviour
     public AudioClip audioEndGame;
     private GameObject animCountDown;
     private GameObject textCount;
+    public AudioSource clip;
     Animator anim;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class MusicCountDown : MonoBehaviour
     {
         if (int.Parse(GameObject.Find("GameTimeLeft").GetComponent<GameTimer>().timeLeft.text) == 10)
         {
-            AudioSource clip = GetComponent<AudioSource>();
+            //AudioSource clip = GetComponent<AudioSource>();
             clip.Stop();       
             clip.clip = audio;        
             clip.Play();           
@@ -40,7 +41,7 @@ public class MusicCountDown : MonoBehaviour
             string endgame = GameObject.FindGameObjectWithTag("endGame").GetComponent<UnityEngine.UI.Text>().text;
             if(endgame== "Game Over!!!")
             {
-                AudioSource clip = GetComponent<AudioSource>();
+                //AudioSource clip = GetComponent<AudioSource>();
                 clip.Stop();
                 clip.clip = audioEndGame;
                 clip.Play();

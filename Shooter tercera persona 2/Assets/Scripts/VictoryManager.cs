@@ -10,8 +10,12 @@ public class VictoryManager : MonoBehaviour
     GameTimer gametimer;
     RollManager rollmanager;
     static public int score;
+    private bool alive;
+    private int health;
     private void Awake()
     {
+        alive = false;
+        health = 0;
         victoryText = GetComponent<Text>();
         victoryText.text="";
     }
@@ -33,53 +37,71 @@ public class VictoryManager : MonoBehaviour
         Time.timeScale = (isActiveAndEnabled) ? 0 : 1f;     
     }
 
+    void EndGame()
+    {
+        score = calculateScore();
+        GameObject gamemanager = GameObject.Find("GameTimeLeft");
+        Destroy(gamemanager);
+        if (alive)
+        {
+            Time.timeScale = (isActiveAndEnabled) ? 0 : 1f;
+        }
+    }
+
     void Update()
     {
+        alive = GameObject.FindGameObjectWithTag("Player") == null ? false : true;
+        health = RollManager.currentHealth;
+
         if (GameObject.FindGameObjectWithTag("Player")!=null){
             if (GameObject.FindGameObjectWithTag("Player").transform.position.y < 0)
             {
                 victoryText.text = "Game Over!!!";
+                EndGame();
                 if (Input.GetKeyDown("space"))
                 {
                     SceneManager.LoadScene(2);
                     Time.timeScale = 1f;
                 }
-                StartCoroutine(TheEnd());
+                //StartCoroutine(TheEnd());
             }            
         }
 
         if (CoinsManager.currentCoinCount == 0)
         {
             victoryText.text = "You Win!!!";
+            EndGame();
             if (Input.GetKeyDown("space"))
             {
                 SceneManager.LoadScene(2);
                 Time.timeScale = 1f;
             }
-            StartCoroutine(TheEnd());
+            //StartCoroutine(TheEnd());
 
         }
 
         if (RollManager.currentHealth == 0 || GameObject.FindGameObjectWithTag("Player")==null)
         {
             victoryText.text = "Game Over!!!";
+            EndGame();
             if (Input.GetKeyDown("space"))
             {
                 SceneManager.LoadScene(2);
                 Time.timeScale = 1f;
             }
-            StartCoroutine(TheEnd());
+            //StartCoroutine(TheEnd());
         }
 
         if (gametimer.getCountDown()<=0)
         {
-            victoryText.text = "Game Over!!!";            
+            victoryText.text = "Game Over!!!";
+            EndGame();
             if (Input.GetKeyDown("space"))
             {
                 SceneManager.LoadScene(2);
                 Time.timeScale = 1f;
             }
-            StartCoroutine(TheEnd());
+            //StartCoroutine(TheEnd());
         }
     }
     private int calculateScore()

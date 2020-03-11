@@ -201,6 +201,7 @@ public class Warrior2Patrol : MonoBehaviour
 
     IEnumerator DieState()
     {
+        agent.SetDestination(this.transform.position);
         yield return 0;
     }
     //Calcula la distáncia entre el enemigo y su objetivo
