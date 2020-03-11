@@ -60,11 +60,11 @@ public class PressButton : MonoBehaviour
     // Update is called once per frame
     void Update()   
     {
-        if (SceneManager.sceneCount > 1)
-        {
-            Scene[] a = SceneManager.GetAllScenes();
-            SceneManager.UnloadSceneAsync(a[2]);            
-        }
+        //if (SceneManager.sceneCount > 1)
+        //{
+        //    Scene[] a = SceneManager.GetAllScenes();
+        //    SceneManager.UnloadSceneAsync(a[2]);            
+        //}
         UpdateVolumeLabel();
         UpdateSFXVolumeLabel();
     }
@@ -137,19 +137,19 @@ public class PressButton : MonoBehaviour
 
     public void PlayScene()
     {
-        Debug.Log("escenas: " + SceneManager.sceneCount);
-        if (SceneManager.sceneCount > 1)
-        {
-            Scene[] a = SceneManager.GetAllScenes();
-            foreach (Scene s in a)
-            {
-                if (s.name == "MenuScene")
-                {
-                    SceneManager.UnloadSceneAsync(s);
-                }
-            }
-            Time.timeScale = 1f;
-        }else                
+        //Debug.Log("escenas: " + SceneManager.sceneCount);
+        //if (SceneManager.sceneCount > 1)
+        //{
+        //    Scene[] a = SceneManager.GetAllScenes();
+        //    foreach (Scene s in a)
+        //    {
+        //        if (s.name == "MenuScene")
+        //        {
+        //            SceneManager.UnloadSceneAsync(s);
+        //        }
+        //    }
+        //    Time.timeScale = 1f;
+        //}else                
             SceneManager.LoadScene("Stage_1");
     }
 

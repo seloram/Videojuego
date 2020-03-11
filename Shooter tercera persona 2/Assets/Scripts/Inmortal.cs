@@ -11,7 +11,11 @@ public class Inmortal : MonoBehaviour
     }
     private void Awake()
     {
-        if (inmortal != null)
+        if (Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+        }
+        if (inmortal != null && inmortal!=this)
         {
             Destroy(this.gameObject);
             return;

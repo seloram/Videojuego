@@ -50,7 +50,7 @@ public class PauseGame : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.P))
         {
             Time.timeScale = 0f;
-            SceneManager.LoadSceneAsync("MenuScene",LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync("MenuScene");
         }
     }
 

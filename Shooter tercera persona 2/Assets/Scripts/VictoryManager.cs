@@ -38,14 +38,14 @@ public class VictoryManager : MonoBehaviour
     }
 
     void EndGame()
-    {
+    {        
         score = calculateScore();
         GameObject gamemanager = GameObject.Find("GameTimeLeft");
         Destroy(gamemanager);
         if (alive)
         {
             Time.timeScale = (isActiveAndEnabled) ? 0 : 1f;
-        }
+        }        
     }
 
     void Update()
@@ -62,6 +62,7 @@ public class VictoryManager : MonoBehaviour
                 {
                     SceneManager.LoadScene(2);
                     Time.timeScale = 1f;
+                    destroyStage1();
                 }
                 //StartCoroutine(TheEnd());
             }            
@@ -75,6 +76,7 @@ public class VictoryManager : MonoBehaviour
             {
                 SceneManager.LoadScene(2);
                 Time.timeScale = 1f;
+                destroyStage1();
             }
             //StartCoroutine(TheEnd());
 
@@ -88,6 +90,7 @@ public class VictoryManager : MonoBehaviour
             {
                 SceneManager.LoadScene(2);
                 Time.timeScale = 1f;
+                destroyStage1();
             }
             //StartCoroutine(TheEnd());
         }
@@ -100,8 +103,17 @@ public class VictoryManager : MonoBehaviour
             {
                 SceneManager.LoadScene(2);
                 Time.timeScale = 1f;
+                destroyStage1();
             }
             //StartCoroutine(TheEnd());
+        }
+    }
+    void destroyStage1()
+    {
+        GameObject inmortal = GameObject.FindGameObjectWithTag("inmortal");
+        if (inmortal != null)
+        {
+            Destroy(inmortal.gameObject);
         }
     }
     private int calculateScore()

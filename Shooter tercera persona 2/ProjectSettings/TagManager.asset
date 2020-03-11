@@ -71,6 +71,7 @@ TagManager:
   - scoreListPanel
   - inputNamePlayer
   - placeholder
+  - inmortal
   layers:
   - Default
   - TransparentFX
