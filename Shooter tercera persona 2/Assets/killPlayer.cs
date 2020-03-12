@@ -36,34 +36,42 @@ public class killPlayer : MonoBehaviour
         }
         if (other.CompareTag("Player"))
         {
-            rollManager.ReduceHealth(this.tag);
-            Destroy(this.gameObject);
-            if (rollManager.getCurrentHealth() <= 0)
+            if (RollManager.currentHealth > 100)
             {
-                d.Explosion(player, fragPlayer);
-                GameObject death = GameObject.Instantiate(fire, other.transform.position, this.transform.rotation) as GameObject;
+                Vector3 a = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.7f);
+                this.transform.forward = Vector3.Reflect(this.transform.forward, a);
             }
             else
             {
-                GameObject clip = GameObject.FindGameObjectWithTag("soundLaserWall");
-                clip.GetComponent<AudioSource>().Play();
-                Vector3 a = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.7f);
-                GameObject go = GameObject.Instantiate(hitb, a, this.transform.rotation) as GameObject;
-                GameObject.Destroy(go, 0.5f);
-            }
+                rollManager.ReduceHealth(this.tag);
+                Destroy(this.gameObject);
+                if (rollManager.getCurrentHealth() <= 0)
+                {
+                    d.Explosion(player, fragPlayer);
+                    GameObject death = GameObject.Instantiate(fire, other.transform.position, this.transform.rotation) as GameObject;
+                }
+                else
+                {
+                    GameObject clip = GameObject.FindGameObjectWithTag("soundLaserWall");
+                    clip.GetComponent<AudioSource>().Play();
+                    Vector3 a = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.7f);
+                    GameObject go = GameObject.Instantiate(hitb, a, this.transform.rotation) as GameObject;
+                    GameObject.Destroy(go, 0.5f);
+                }
+            }           
         }
         if (other.CompareTag("pilar"))
         {
             //Vector3 b = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
             //GameObject go2 = GameObject.Instantiate(hitc, b, this.transform.rotation) as GameObject;
             //GameObject.Destroy(go2, 0.5f);
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
             GameObject clip = GameObject.FindGameObjectWithTag("soundLaserWall");
             clip.GetComponent<AudioSource>().Play();
             Vector3 a = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z+1.7f);
             GameObject go = GameObject.Instantiate(hit, a, this.transform.rotation) as GameObject;
             GameObject.Destroy(go,0.5f);
-           
+            this.transform.forward = Vector3.Reflect(this.transform.forward, a);
         }
     }
 }
