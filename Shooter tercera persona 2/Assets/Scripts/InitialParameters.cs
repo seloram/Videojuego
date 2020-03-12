@@ -9,12 +9,14 @@ public class InitialParameters : MonoBehaviour
     static public int quality;
     public AudioMixer sfxVolume;
     public AudioMixer musicVolume;
+    private int health;
     public GUISkin customSkin;
     bool GUIEnabled;
     // Start is called before the first frame update
     void Start()
     {
         GUIEnabled = true;
+        health = RollManager.currentHealth;
         GameObject warrior3 = GameObject.FindGameObjectWithTag("warrior 2");
         
         if (PressButton.difficulty == 1)
@@ -53,10 +55,15 @@ public class InitialParameters : MonoBehaviour
             //style.alignment = TextAnchor.LowerCenter;
             //GUI.skin.box = style;        
             GUI.Box(new Rect(0, 100, 100, 160), readout);
-
+            
             if (GUI.Button(new Rect(0, 270, 80, 20), "INMORTAL"))
             {
-                RollManager.currentHealth = 100000;
+                if (RollManager.currentHealth != -666)
+                {
+                    health = RollManager.currentHealth;
+                    RollManager.currentHealth = -666;
+                }else
+                    RollManager.currentHealth = health;
             }
             if (GUI.Button(new Rect(0, 290, 80, 20), "TEST"))
             {

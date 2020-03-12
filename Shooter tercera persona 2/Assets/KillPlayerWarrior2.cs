@@ -32,32 +32,43 @@ public class KillPlayerWarrior2 : MonoBehaviour
     {                
         if (other.CompareTag("Player"))
         {
-            rollManager.ReduceHealth(this.tag);
-            Destroy(this.gameObject);
-            if (rollManager.getCurrentHealth() <= 0)
+            if (RollManager.currentHealth == -666)
             {
-                d.Explosion(player, fragPlayer);
+                Vector3 a = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.7f);
+                this.transform.forward = Vector3.Reflect(this.transform.forward, a);
             }
             else
             {
-                Vector3 a = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.7f);
-                GameObject go = GameObject.Instantiate(hit, a, this.transform.rotation) as GameObject;
-                GameObject.Destroy(go, 0.5f);
-               
-                if (this.tag == "wShot")
+                rollManager.ReduceHealth(this.tag);
+                Destroy(this.gameObject);
+                if (rollManager.getCurrentHealth() <= 0)
                 {
-                    other.attachedRigidbody.constraints = RigidbodyConstraints.FreezePosition;
+                    d.Explosion(player, fragPlayer);
+                }
+                else
+                {
+                    Vector3 a = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.7f);
+                    GameObject go = GameObject.Instantiate(hit, a, this.transform.rotation) as GameObject;
+                    GameObject.Destroy(go, 0.5f);
+
+                    if (this.tag == "wShot")
+                    {
+                        other.attachedRigidbody.constraints = RigidbodyConstraints.FreezePosition;
+                    }
                 }
             }
+            
         }
         if (other.CompareTag("pilar"))
         {
             Vector3 a = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.7f);
             GameObject go = GameObject.Instantiate(hit, a, this.transform.rotation) as GameObject;
             GameObject.Destroy(go, 0.5f);
-            Destroy(this.gameObject);
+            if(RollManager.currentHealth == -666)
+                Destroy(this.gameObject);
             GameObject clip = GameObject.FindGameObjectWithTag("soundLaserWall");
             clip.GetComponent<AudioSource>().Play();
+            this.transform.forward = Vector3.Reflect(this.transform.forward, a);
         }
     }  
 }

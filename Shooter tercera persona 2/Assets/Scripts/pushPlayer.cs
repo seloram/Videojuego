@@ -59,7 +59,7 @@ public class pushPlayer : MonoBehaviour
         
         Debug.Log("colision----->" + other.name);
         Debug.Log("tag----->" + other.tag);
-        if (other.tag.CompareTo("Player")==0)
+        if (other.tag.CompareTo("Player")==0 && (RollManager.currentHealth!=-666))
         {
             Debug.Log("acerte");
             var magnitude = 250;

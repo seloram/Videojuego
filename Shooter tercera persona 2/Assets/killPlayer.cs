@@ -36,7 +36,7 @@ public class killPlayer : MonoBehaviour
         }
         if (other.CompareTag("Player"))
         {
-            if (RollManager.currentHealth > 100)
+            if (RollManager.currentHealth == -666)
             {
                 Vector3 a = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.7f);
                 this.transform.forward = Vector3.Reflect(this.transform.forward, a);

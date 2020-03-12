@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 10825254}
   - component: {fileID: 3597915872893615348}
   - component: {fileID: 941010953526530454}
-  - component: {fileID: 8586130203970816717}
   m_Layer: 0
   m_Name: shot_warrior1
   m_TagString: wShot
@@ -210,16 +209,3 @@ MonoBehaviour:
   d: {fileID: 0}
   material: {fileID: 2100000, guid: c9abdaf4e498a2e459b1656f4289b468, type: 2}
   originalMaterial: {fileID: 2100000, guid: 6fd099d339b4ae34692c8258e4f87531, type: 2}
---- !u!114 &8586130203970816717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cd28dea64d8e1f4bb9acc9fb9c1f90b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pushPower: 2
