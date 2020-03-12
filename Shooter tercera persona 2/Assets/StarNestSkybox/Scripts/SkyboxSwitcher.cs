@@ -10,10 +10,15 @@ public class SkyboxSwitcher : MonoBehaviour {
 @"Press '[' and ']' to change the skybox.
 Right-Click and drag to look around (You will need 'Mouse X/Mouse Y/Mouse ScrollWheel' axis in Input Manager)
 WASDQE to move the camera. Press b to stop, and n to slow down.";
-	
-	
 
-	void Start() {
+    private void Awake()
+    {
+        mats = Resources.LoadAll<Material>("");
+        Material mat = mats[15];
+        RenderSettings.skybox = mat;
+    }
+
+    void Start() {
 		mats = Resources.LoadAll<Material>("");
         
         //Load(0);
