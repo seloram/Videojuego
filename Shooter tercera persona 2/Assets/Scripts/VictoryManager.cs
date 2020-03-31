@@ -7,6 +7,7 @@ public class VictoryManager : MonoBehaviour
 {
     // Start is called before the first frame update
     Text victoryText;
+    Text victoryText2;
     GameTimer gametimer;
     RollManager rollmanager;
     static public int score;
@@ -16,8 +17,11 @@ public class VictoryManager : MonoBehaviour
     {
         alive = false;
         health = 0;
-        victoryText = GetComponent<Text>();
+        //GetComponent<Text>();
+        victoryText = GameObject.FindGameObjectWithTag("endGame").GetComponent<Text>();
         victoryText.text="";
+        victoryText2 = GameObject.FindGameObjectWithTag("pressSpace").GetComponent<Text>();
+        victoryText2.text = "";
     }
     void Start()
     {
@@ -57,6 +61,7 @@ public class VictoryManager : MonoBehaviour
             if (GameObject.FindGameObjectWithTag("Player").transform.position.y < 0)
             {
                 victoryText.text = "Game Over!!!";
+                victoryText2.text = "Press SpaceBar to Continue";
                 EndGame();
                 if (Input.GetKeyDown("space"))
                 {
@@ -71,6 +76,7 @@ public class VictoryManager : MonoBehaviour
         if (CoinsManager.currentCoinCount == 0)
         {
             victoryText.text = "You Win!!!";
+            victoryText2.text = "Press SpaceBar to Continue";
             EndGame();
             if (Input.GetKeyDown("space"))
             {
@@ -85,6 +91,7 @@ public class VictoryManager : MonoBehaviour
         if (RollManager.currentHealth == 0 || GameObject.FindGameObjectWithTag("Player")==null)
         {
             victoryText.text = "Game Over!!!";
+            victoryText2.text = "Press SpaceBar to Continue";
             EndGame();
             if (Input.GetKeyDown("space"))
             {
@@ -98,6 +105,7 @@ public class VictoryManager : MonoBehaviour
         if (gametimer.getCountDown()<=0)
         {
             victoryText.text = "Game Over!!!";
+            victoryText2.text = "Press SpaceBar to Continue";
             EndGame();
             if (Input.GetKeyDown("space"))
             {
