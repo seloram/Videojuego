@@ -26235,7 +26235,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ROLLERBALL
+  m_Text: BALLRUNNER
 --- !u!222 &2034596287
 CanvasRenderer:
   m_ObjectHideFlags: 0
