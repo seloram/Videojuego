@@ -23,6 +23,8 @@ public class PressButton : MonoBehaviour
     private Animator menuVolume;
     private Animator menuResolution;
     private Animator menuDifficulty;
+    public AudioSource ambience;
+    public AudioSource lastStance;
     private void Awake()
     {
         
@@ -31,6 +33,8 @@ public class PressButton : MonoBehaviour
         menuVolume = VolumePanel.GetComponent<Animator>();
         menuResolution = ResolutionPanel.GetComponent<Animator>();
         menuDifficulty = DifficultyPanel.GetComponent<Animator>();
+        ambience = GameObject.FindGameObjectWithTag("ambience").GetComponent<AudioSource>();
+        lastStance = GameObject.FindGameObjectWithTag("lastStance").GetComponent<AudioSource>();
         //SettingsPanel.SetActive(false);
     }
     // Start is called before the first frame update
@@ -149,17 +153,31 @@ public class PressButton : MonoBehaviour
         //        }
         //    }
         //    Time.timeScale = 1f;
-        //}else                
-            SceneManager.LoadScene("Stage_1");
+        //}else
+        
+        SceneManager.LoadScene("Stage_1");
+        if (PauseGame.ambiencePlaying)
+        {
+            ambience.Play();
+            PauseGame.ambiencePlaying = false;
+        }
+        if (PauseGame.lastStancePlaying)
+        {
+            lastStance.Play();
+            PauseGame.lastStancePlaying = false;
+        }
     }
 
     public void QuitGame()
     {
+        #if UNITY_EDITOR
         if (UnityEditor.EditorApplication.isPlaying)
         {
             UnityEditor.EditorApplication.isPlaying = false;
         }else
             Application.Quit();
+        #endif
+        Application.Quit();
     }
     public void Volume()
     {

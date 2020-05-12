@@ -73,6 +73,7 @@ TagManager:
   - placeholder
   - inmortal
   - pressSpace
+  - lastStance
   layers:
   - Default
   - TransparentFX

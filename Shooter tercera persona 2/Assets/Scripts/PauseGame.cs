@@ -10,14 +10,19 @@ public class PauseGame : MonoBehaviour
     public static bool isPaused;
     private Toggle m_MenuToggle;
     private float mTimeScaleRef = 1f;
+    public AudioSource ambience;
+    public AudioSource lastStance;
     private float m_VolumeRef = 1f;
     private bool m_Paused=false;
     public GameObject pauseP;
-
+    static public bool ambiencePlaying = false;
+    static public bool lastStancePlaying = false;
     void Awake()
     {
         
         m_MenuToggle = GetComponent<Toggle>();
+        ambience = GameObject.FindGameObjectWithTag("ambience").GetComponent<AudioSource>();
+        lastStance = GameObject.FindGameObjectWithTag("lastStance").GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -32,7 +37,8 @@ public class PauseGame : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape) && (SceneManager.GetActiveScene().name != "MenuScene") && 
+            (int.Parse(GameObject.Find("GameTimeLeft").GetComponent<GameTimer>().timeLeft.text) > 0))
         {
             if (m_Paused)
             {
@@ -47,9 +53,22 @@ public class PauseGame : MonoBehaviour
             //SceneManager.SetActiveScene(s2);
             MenuOn();
         }
-        if (Input.GetKeyUp(KeyCode.P))
-        {
+        if (Input.GetKeyUp(KeyCode.P) && (!m_Paused) && (SceneManager.GetActiveScene().name != "MenuScene") &&
+            (int.Parse(GameObject.Find("GameTimeLeft").GetComponent<GameTimer>().timeLeft.text) > 5))
+        {            
             Time.timeScale = 0f;
+            if (ambience.isPlaying)
+            {
+                ambience.Stop();
+                ambiencePlaying = true;
+            }
+            
+            if (lastStance.isPlaying)
+            {
+                lastStance.Stop();
+                lastStancePlaying = true;
+            }           
+            
             SceneManager.LoadSceneAsync("MenuScene");
         }
     }

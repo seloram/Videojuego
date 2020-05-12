@@ -54,9 +54,9 @@ public class InitialParameters : MonoBehaviour
             //GUIStyle style = new GUIStyle(GUI.skin.box);
             //style.alignment = TextAnchor.LowerCenter;
             //GUI.skin.box = style;        
-            GUI.Box(new Rect(0, 100, 100, 160), readout);
+            GUI.Box(new Rect(0, 160, 100, 160), readout);
             
-            if (GUI.Button(new Rect(0, 270, 80, 20), "INMORTAL"))
+            if (GUI.Button(new Rect(0, 330, 80, 20), "INMORTAL"))
             {
                 if (RollManager.currentHealth != -666)
                 {
@@ -65,7 +65,7 @@ public class InitialParameters : MonoBehaviour
                 }else
                     RollManager.currentHealth = health;
             }
-            if (GUI.Button(new Rect(0, 290, 80, 20), "TEST"))
+            if (GUI.Button(new Rect(0, 350, 80, 20), "TEST"))
             {
                 GameObject.FindGameObjectWithTag("warrior 2").SetActive(false);
                 GameObject.FindGameObjectWithTag("warrior").SetActive(false);
