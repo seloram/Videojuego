@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 public class PressButton : MonoBehaviour
 {
     static public int difficulty;
-    static public float sfxVolume=1.0f;
+    static public float sfxVolume = 1.0f;
     static public float musicVolume = 1.0f;
     public GameObject Menu;
     public AudioMixer audioMixer;
@@ -27,7 +27,7 @@ public class PressButton : MonoBehaviour
     public AudioSource lastStance;
     private void Awake()
     {
-        
+
         menuAnim = Menu.GetComponent<Animator>();
         settingsPanelAnim = SettingsPanel.GetComponent<Animator>();
         menuVolume = VolumePanel.GetComponent<Animator>();
@@ -40,29 +40,36 @@ public class PressButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        GameObject volM = GameObject.FindGameObjectWithTag("volumeInternalPanel");
-        volM.transform.Find("pMusicVolume").GetComponentInChildren<Text>().GetComponentInChildren<UnityEngine.UI.Text>().text = "Music Volume: 100%";       
-        
-        GameObject volS = GameObject.FindGameObjectWithTag("sfxInternalPanel");
-        volS.transform.Find("pSfxVolume").GetComponentInChildren<Text>().GetComponentInChildren<UnityEngine.UI.Text>().text = "SFX Volume: 100%";       
-        UnityEngine.UI.Slider[] s = GameObject.FindObjectsOfType<UnityEngine.UI.Slider>();
 
+        GameObject volM = GameObject.FindGameObjectWithTag("volumeInternalPanel");
+
+        volM.transform.Find("pMusicVolume").GetComponentInChildren<Text>().GetComponentInChildren<UnityEngine.UI.Text>().text = "Music Volume: 100%";
+
+
+
+        GameObject volS = GameObject.FindGameObjectWithTag("sfxInternalPanel");
+
+        volS.transform.Find("pSfxVolume").GetComponentInChildren<Text>().GetComponentInChildren<UnityEngine.UI.Text>().text = "SFX Volume: 100%";
+
+
+        UnityEngine.UI.Slider[] s = GameObject.FindObjectsOfType<UnityEngine.UI.Slider>();
+        Debug.Log("el volumen musica es: " + musicVolume.ToString());
         foreach (UnityEngine.UI.Slider sli in s)
         {
             if (sli.name == "SliderVolume")
             {
-                sli.value = musicVolume;
+                Debug.Log("el volumen musica es: " + musicVolume.ToString());
+                sli.value = GameParameters.musicVolume;
             }
             if (sli.name == "SliderSFX")
             {
-                sli.value = sfxVolume;
+                sli.value = GameParameters.sfxVolume;
             }
         }
     }
 
     // Update is called once per frame
-    void Update()   
+    void Update()
     {
         //if (SceneManager.sceneCount > 1)
         //{
@@ -87,7 +94,7 @@ public class PressButton : MonoBehaviour
         settingsPanelAnim.SetBool("Open", false);
         settingsPanelAnim.SetBool("Close", true);
         menuAnim.SetBool("Close", false);
-        menuAnim.SetBool("Open", true);       
+        menuAnim.SetBool("Open", true);
 
         //var newPreviouslySelected = EventSystem.current.currentSelectedGameObject.GetComponentInParent<RectTransform>();
         //Animator[] gas = ga.GetComponentsInChildren<Animator>();
@@ -154,7 +161,7 @@ public class PressButton : MonoBehaviour
         //    }
         //    Time.timeScale = 1f;
         //}else
-        
+
         SceneManager.LoadScene("Stage_1");
         if (PauseGame.ambiencePlaying)
         {
@@ -170,20 +177,21 @@ public class PressButton : MonoBehaviour
 
     public void QuitGame()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         if (UnityEditor.EditorApplication.isPlaying)
         {
             UnityEditor.EditorApplication.isPlaying = false;
-        }else
+        }
+        else
             Application.Quit();
-        #endif
+#endif
         Application.Quit();
     }
     public void Volume()
     {
         CloseSubPanels();
         menuVolume.SetBool("Close", false);
-        menuVolume.SetBool("Open", true);       
+        menuVolume.SetBool("Open", true);
     }
     public void Difficulty()
     {
@@ -192,9 +200,9 @@ public class PressButton : MonoBehaviour
         menuDifficulty.SetBool("Open", true);
     }
     public void SetVolume(float value)
-    {        
+    {
         musicVolume = value;
-        UpdateVolumeLabel();        
+        UpdateVolumeLabel();
     }
 
     public void DecreaseQuality()
@@ -224,20 +232,21 @@ public class PressButton : MonoBehaviour
         {
             audioMixer.SetFloat("musicVolume", GameParameters.musicVolume * 100 - 80);
         }
-        
-        float audioVolume = musicVolume * 100;
-        GameObject vol = GameObject.FindGameObjectWithTag("volumeInternalPanel");        
-        vol.transform.Find("pMusicVolume").GetComponentInChildren<Text>().GetComponent<UnityEngine.UI.Text>().text = "Music Volume: " +audioVolume.ToString("f1") + "%";
+
+        float audioVolume = GameParameters.musicVolume * 100;
+        Debug.Log("update musica" + audioVolume);
+        GameObject vol = GameObject.FindGameObjectWithTag("volumeInternalPanel");
+        vol.transform.Find("pMusicVolume").GetComponentInChildren<Text>().GetComponent<UnityEngine.UI.Text>().text = "Music Volume: " + audioVolume.ToString("f1") + "%";
     }
     public void UpdateSFXVolumeLabel()
-    {       
-        float audioVolume = sfxVolume * 100;
+    {
+        float audioVolume = GameParameters.sfxVolume * 100;
         GameObject vol = GameObject.FindGameObjectWithTag("sfxInternalPanel");
         vol.transform.Find("pSfxVolume").GetComponentInChildren<Text>().GetComponent<UnityEngine.UI.Text>().text = "SFX Volume: " + audioVolume.ToString("f1") + "%";
     }
 
     public void SetSfxVolume(float value)
-    {        
+    {
         sfxVolume = value;
         UpdateSFXVolumeLabel();
     }
