@@ -27,9 +27,7 @@ public class FillScores : MonoBehaviour
         classScore = new List<BD_Score>();
         bdScore = new BD_Score();
         ReadJson();
-        Debug.Log("classscore+" + classScore.Count);
-        Debug.Log("classscorename" + classScore[0].name);
-        Debug.Log("points 10 " + classScore[9].points);
+
         scoreList.transform.localScale = new Vector3(0, 0, 0);
         inputNamePlayer.transform.localScale = new Vector3(0, 0, 0);
         placeholder.transform.localScale = new Vector3(0, 0, 0);
@@ -37,12 +35,11 @@ public class FillScores : MonoBehaviour
         
         //inputNamePlayer = GameObject.FindGameObjectWithTag("inputNamePlayer");
         Debug.Log("points 10 " + classScore[classScore.Count-1].points);
-        if (classScore.Count > 10)
+        if (classScore.Count < 9)
         {
             Debug.Log("points 102 " + classScore[classScore.Count-1].points);
-            if (VictoryManager.score > classScore[9].points)
-            {
-                Debug.Log("points 103" + classScore[9].points);
+            if (VictoryManager.score > classScore[classScore.Count-1].points)
+            {                
                 done = false;
             }
         }
@@ -140,12 +137,16 @@ public class FillScores : MonoBehaviour
         using (StreamReader r = new StreamReader(new FileStream(path, FileMode.OpenOrCreate)))
         {            
             jsonstring = r.ReadLine();
-            while (jsonstring != null)
+            if (jsonstring.Length > 0)
             {
-                BD_Score x = JsonUtility.FromJson<BD_Score>(jsonstring);
-                classScore.Add(x);
-                jsonstring = r.ReadLine();
-            }            
+                while (jsonstring != null)
+                {
+                    BD_Score x = JsonUtility.FromJson<BD_Score>(jsonstring);
+                    classScore.Add(x);
+                    jsonstring = r.ReadLine();
+                }
+            }
+
         }
     }
 
